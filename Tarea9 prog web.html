@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .colorAzul {
+            color: blue;
+            background-color: lightblue;
+        }
+
+        .colorRojo {
+            background-color: pink;
+            color: red;
+        }
+
+        .colorVerde {
+            color: green;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="divEscenario"></div>
+
+    <div>
+        Azules<span id="lbl_blue">0</span>
+        Rojos<span id="lbl_red">0</span>
+        Verdes<span id="lbl_green">0</span>
+    </div>
+
+    <script>
+        window.onload = function () {
+            destino = document.getElementById('divEscenario');
+            for (var x = 0; x < 25; x++) {
+                txt = document.createElement('input');
+                txt.setAttribute('class', 'txtDinamico');
+                txt.setAttribute('onkeyup', 'calcular()');
+                destino.appendChild(txt);
+            }
+        }
+
+        function calcular() {
+            cr = 0;
+            cg = 0;
+            cb = 0;
+
+            txts = document.getElementsByClassName('txtDinamico');
+
+            for (var x in txts) {
+                if (txts[x].value != undefined) {
+                    txt = txts[x];
+                    txt.setAttribute('class', 'txtDinamico');
+                    texto = txts[x].value;
+                    texto = texto.toLowerCase().trim();
+
+                    if (texto == 'rojo') {
+                        cr++;
+                        txt.setAttribute('class', 'txtDinamico colorRojo');
+                    }
+
+                    if (texto == 'verde') {
+                        cg++;
+                        txt.setAttribute('class', 'txtDinamico colorVerde');
+                    }
+
+                    if (texto == 'azul') {
+                        cb++;
+                        txt.setAttribute('class', 'txtDinamico colorAzul');
+                    }
+                }
+            }
+
+            document.getElementById('lbl_blue').innerHTML = cb;
+            document.getElementById('lbl_red').innerHTML = cr;
+            document.getElementById('lbl_green').innerHTML = cg;
+        }
+    </script>
+</body>
+</html>
